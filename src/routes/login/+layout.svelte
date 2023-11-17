@@ -47,7 +47,7 @@
 			<svelte:fragment slot="header">{step.header}</svelte:fragment>
 			<a href="{step.href}">{step.content}</a>	
 			{$page.route.id}
-			{$page.route.id?.match(/^\/login\/.+/) ? 'true' : 'false'}
+
 		</Step>
 	{/each}
 	<!-- 

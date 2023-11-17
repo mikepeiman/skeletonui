@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.postcss';
 	import { AppShell, AppBar, AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
-
+	import { page } from '$app/stores';
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
@@ -12,23 +12,29 @@
 	let railItems = [
 		{
 			value: 0,
+			href: '/',
+			title: 'Home',
+			slot: 'lead'
+		},
+		{
+			value: 0,
 			href: '/login',
-			title: 'item-1',
-			slot: 'lead',
+			title: 'Login',
+			slot: 'lead'
 		},
 		{
 			value: 0,
 			href: '/login/username',
-			title: 'item-2',
-			slot: 'lead',
+			title: 'Username',
+			slot: 'lead'
 		},
 		{
 			value: 0,
 			href: '/login/photo',
-			title: 'item-3',
-			slot: 'lead',
-		},
-	]
+			title: 'Photo',
+			slot: 'lead'
+		}
+	];
 </script>
 
 <!-- App Shell -->
@@ -70,25 +76,11 @@
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
 		<AppRail>
-			<svelte:fragment slot="lead">
-				<AppRailAnchor href="/">Home</AppRailAnchor>
-			</svelte:fragment>
-			<!-- --- -->
-			<AppRailTile bind:group={currentTile} name="tile-1" value={0} title="tile-1">
-				<AppRailAnchor href="/login">
-					<svelte:fragment slot="lead">Login</svelte:fragment></AppRailAnchor
+			{#each railItems as item}
+				<AppRailAnchor href={item.href} selected={$page.url.pathname === item.href}
+					><svelte:fragment slot="lead">{item.title}</svelte:fragment></AppRailAnchor
 				>
-			</AppRailTile>
-			<AppRailTile bind:group={currentTile} name="tile-1" value={0} title="tile-1">
-				<AppRailAnchor href="/login">
-					<svelte:fragment slot="lead">Login</svelte:fragment></AppRailAnchor
-				>
-			</AppRailTile>
-			<AppRailTile bind:group={currentTile} name="tile-1" value={0} title="tile-1">
-				<AppRailAnchor href="/login">
-					<svelte:fragment slot="lead">Login</svelte:fragment></AppRailAnchor
-				>
-			</AppRailTile>
+			{/each}
 
 			<svelte:fragment slot="trail">
 				<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
