@@ -8,6 +8,27 @@
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 	let currentTile: number = 0;
 	let icon;
+
+	let railItems = [
+		{
+			value: 0,
+			href: '/login',
+			title: 'item-1',
+			slot: 'lead',
+		},
+		{
+			value: 0,
+			href: '/login/username',
+			title: 'item-2',
+			slot: 'lead',
+		},
+		{
+			value: 0,
+			href: '/login/photo',
+			title: 'item-3',
+			slot: 'lead',
+		},
+	]
 </script>
 
 <!-- App Shell -->
@@ -48,30 +69,31 @@
 		<!-- Page Route Content -->
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
+		<AppRail>
+			<svelte:fragment slot="lead">
+				<AppRailAnchor href="/">Home</AppRailAnchor>
+			</svelte:fragment>
+			<!-- --- -->
+			<AppRailTile bind:group={currentTile} name="tile-1" value={0} title="tile-1">
+				<AppRailAnchor href="/login">
+					<svelte:fragment slot="lead">Login</svelte:fragment></AppRailAnchor
+				>
+			</AppRailTile>
+			<AppRailTile bind:group={currentTile} name="tile-1" value={0} title="tile-1">
+				<AppRailAnchor href="/login">
+					<svelte:fragment slot="lead">Login</svelte:fragment></AppRailAnchor
+				>
+			</AppRailTile>
+			<AppRailTile bind:group={currentTile} name="tile-1" value={0} title="tile-1">
+				<AppRailAnchor href="/login">
+					<svelte:fragment slot="lead">Login</svelte:fragment></AppRailAnchor
+				>
+			</AppRailTile>
 
-	
-	<AppRail>
-		<svelte:fragment slot="lead">
-			<AppRailAnchor href="/">(icon)</AppRailAnchor>
-		</svelte:fragment>
-		<!-- --- -->
-		<AppRailTile bind:group={currentTile} name="tile-1" value={0} title="tile-1">
-			<svelte:fragment slot="lead">(icon)</svelte:fragment>
-			<span>Tile 1</span>
-		</AppRailTile>
-		<AppRailTile bind:group={currentTile} name="tile-2" value={1} title="tile-2">
-			<svelte:fragment slot="lead">(icon)</svelte:fragment>
-			<span>Tile 2</span>
-		</AppRailTile>
-		<AppRailTile bind:group={currentTile} name="tile-3" value={2} title="tile-3">
-			<svelte:fragment slot="lead">(icon)</svelte:fragment>
-			<span>Tile 3</span>
-		</AppRailTile>
-		<!-- --- -->
-		<svelte:fragment slot="trail">
-			<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
-		</svelte:fragment></AppRail
+			<svelte:fragment slot="trail">
+				<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
+			</svelte:fragment></AppRail
 		>
 	</svelte:fragment>
-		<slot />
+	<slot />
 </AppShell>
