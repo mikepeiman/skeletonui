@@ -2,6 +2,16 @@
 	import { Step, Stepper } from '@skeletonlabs/skeleton';
 	import { Card } from 'flowbite-svelte';
 	import { page } from '$app/stores';
+    import { user } from '$lib/firebase';
+    import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+
+
+    const auth = getAuth();
+    async function signInWithGoogle() {
+        const provider = new GoogleAuthProvider();
+        const user = await signInWithPopup(auth, provider);
+        console.log(user);
+    }
 
 	function onCompleteHandler(e: Event): void {
 		console.log('event:complete', e);
@@ -40,4 +50,14 @@
 	{/each}
 </Stepper>
 
-<slot />
+<h2>Login</h2>
+
+{#if $user}
+  <h2 class="card-title">Welcome, {$user.displayName}</h2>
+  <p class="text-center text-success">You are logged in</p>
+  <button class="btn btn-warning" on:click={() => signOut(auth)}>Sign out</button>
+{:else}
+  <button class="btn btn-primary" on:click={signInWithGoogle}>Sign in with Google</button>
+{/if}
+
+<button class="btn btn-primary" on:click={signInWithGoogle}>Sign in with Google</button>

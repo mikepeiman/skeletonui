@@ -20,6 +20,7 @@
     "@tailwindcss/typography": "0.5.10",
     "@types/node": "20.9.0",
     "autoprefixer": "10.4.16",
+    "firebase": "^10.6.0",
     "flowbite": "^2.1.1",
     "flowbite-svelte": "^0.44.19",
     "postcss": "8.4.31",
