@@ -51,12 +51,10 @@
 	{/each}
 </Stepper>
 
-<h2>Login</h2>
-
 {#if $user}
   <h2 class="card-title">Welcome, {$user.displayName}</h2>
   <p class="text-center text-success">You are logged in</p>
-  <button class="btn btn-warning" on:click={() => signOut(auth)}>Sign out</button>
+  <button  type="button" class="btn variant-filled-primary" on:click={() => signOut(auth)}>Sign out</button>
 {:else}
-  <button class="btn btn-primary" on:click={signInWithGoogle}>Sign in with Google</button>
+  <button  type="button" class="btn variant-filled-primary" on:click={signInWithGoogle}>Sign in with Google</button>
 {/if}
