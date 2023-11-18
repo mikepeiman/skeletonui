@@ -23,6 +23,7 @@
     "firebase": "^10.6.0",
     "flowbite": "^2.1.1",
     "flowbite-svelte": "^0.44.19",
+    "iconify-icon": "^1.0.8",
     "postcss": "8.4.31",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.10.1",

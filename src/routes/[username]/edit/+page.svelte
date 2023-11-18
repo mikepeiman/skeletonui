@@ -12,12 +12,12 @@
     import { writable } from "svelte/store";
   
     const icons = [
-      "Twitter",
-      "YouTube",
-      "TikTok",
-      "LinkedIn",
-      "GitHub",
-      "Custom",
+        { name: "Twitter", iconName: "bx:bxl-twitter" },
+        { name: "YouTube", iconName: "bx:bxl-youtube" },
+        { name: "TikTok", iconName: "bx:bxl-tiktok" },
+        { name: "LinkedIn", iconName: "bx:bxl-linkedin" },
+        { name: "GitHub", iconName: "bx:bxl-github" },
+        { name: "Custom", iconName: "bx:bx-customize" },
     ];
 
     const formDefaults = {
@@ -89,7 +89,7 @@
           >
 
             {#each icons as icon}
-              <option value={icon.toLowerCase()}>{icon}</option>
+              <option value={icon.iconName}>{icon.name}</option>
             {/each}
           </select>
           <input
