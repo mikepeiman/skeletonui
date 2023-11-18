@@ -70,7 +70,7 @@
   
           <p>Is available? {isAvailable}</p>
   
-          <button type="button" class="btn btn-primary">Confirm username @{username} </button>
+          <button type="submit" class="btn btn-primary bg-orange-400">Confirm username @{username} </button>
   
         </form>
   
