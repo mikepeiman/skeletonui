@@ -2,16 +2,23 @@
 	import { Step, Stepper } from '@skeletonlabs/skeleton';
 	import { Card } from 'flowbite-svelte';
 	import { page } from '$app/stores';
-    import { user } from '$lib/firebase';
-    import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+	import { user } from '$lib/firebase';
+	import {
+		getAuth,
+		createUserWithEmailAndPassword,
+		GoogleAuthProvider,
+		signInWithPopup,
+		signOut
+	} from 'firebase/auth';
+	import UsernameSelect from '$lib/components/UsernameSelect.svelte';
+	import ProfilePhotoSelect from '$lib/components/ProfilePhotoSelect.svelte';
 
-
-    const auth = getAuth();
-    async function signInWithGoogle() {
-        const provider = new GoogleAuthProvider();
-        const user = await signInWithPopup(auth, provider);
-        console.log(user);
-    }
+	const auth = getAuth();
+	async function signInWithGoogle() {
+		const provider = new GoogleAuthProvider();
+		const user = await signInWithPopup(auth, provider);
+		console.log(user);
+	}
 
 	function onCompleteHandler(e: Event): void {
 		console.log('event:complete', e);
@@ -38,23 +45,42 @@
 			header: 'Step 3',
 			content: 'content',
 			href: '/login/photo'
-		}	];
-
-
+		}
+	];
 </script>
 
+<!-- 
 <Stepper on:complete={onCompleteHandler} on:step={onStepHandler}>
 	{#each steps as step}
 		<Step>
 			<svelte:fragment slot="header">{step.header}</svelte:fragment>
+			<svelte:fragment slot="content"><UsernameSelect /></svelte:fragment>
 		</Step>
 	{/each}
-</Stepper>
+</Stepper> 
+-->
 
+<Stepper on:complete={onCompleteHandler} on:step={onStepHandler}>
+	<Step>
+		<svelte:fragment slot="header">Step 1</svelte:fragment>
 {#if $user}
-  <h2 class="card-title">Welcome, {$user.displayName}</h2>
-  <p class="text-center text-success">You are logged in</p>
-  <button  type="button" class="btn variant-filled-primary" on:click={() => signOut(auth)}>Sign out</button>
-{:else}
-  <button  type="button" class="btn variant-filled-primary" on:click={signInWithGoogle}>Sign in with Google</button>
-{/if}
+				<h2 class="card-title">Welcome, {$user.displayName}</h2>
+				<p class="text-center text-success">You are logged in</p>
+				<button type="button" class="btn variant-filled-primary" on:click={() => signOut(auth)}
+					>Sign out</button
+				>
+			{:else}
+				<button type="button" class="btn variant-filled-primary" on:click={signInWithGoogle}
+					>Sign in with Google</button
+				>
+			{/if}
+	</Step>
+	<Step>
+		<svelte:fragment slot="header">Step 2</svelte:fragment>
+<UsernameSelect />
+	</Step>
+	<Step>
+		<svelte:fragment slot="header">Step 3</svelte:fragment>
+<ProfilePhotoSelect />
+	</Step>
+</Stepper>
