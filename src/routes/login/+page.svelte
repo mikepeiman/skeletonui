@@ -38,8 +38,9 @@
 			header: 'Step 3',
 			content: 'content',
 			href: '/login/photo'
-		}
-	];
+		}	];
+
+
 </script>
 
 <Stepper on:complete={onCompleteHandler} on:step={onStepHandler}>
@@ -59,5 +60,3 @@
 {:else}
   <button class="btn btn-primary" on:click={signInWithGoogle}>Sign in with Google</button>
 {/if}
-
-<button class="btn btn-primary" on:click={signInWithGoogle}>Sign in with Google</button>
