@@ -14,10 +14,27 @@
 	import ProfilePhotoSelect from '$lib/components/ProfilePhotoSelect.svelte';
 
 	const auth = getAuth();
+
 	async function signInWithGoogle() {
+		console.log(`🚀 ~ file: +page.svelte:19 ~ signInWithGoogle ~ signInWithGoogle:`)
 		const provider = new GoogleAuthProvider();
-		const user = await signInWithPopup(auth, provider);
-		console.log(user);
+		const credential = await signInWithPopup(auth, provider);
+
+		const idToken = await credential.user.getIdToken();
+
+		const res = await fetch('/api/signin', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+				// 'CSRF-Token': csrfToken  // HANDLED by sveltekit automatically
+			},
+			body: JSON.stringify({ idToken })
+		});
+	}
+
+	async function signOutSSR() {
+		const res = await fetch('/api/signin', { method: 'DELETE' });
+		await signOut(auth);
 	}
 
 	function onCompleteHandler(e: Event): void {
@@ -63,24 +80,24 @@
 <Stepper on:complete={onCompleteHandler} on:step={onStepHandler}>
 	<Step>
 		<svelte:fragment slot="header">Step 1</svelte:fragment>
-{#if $user}
-				<h2 class="card-title">Welcome, {$user.displayName}</h2>
-				<p class="text-center text-success">You are logged in</p>
-				<button type="button" class="btn variant-filled-primary" on:click={() => signOut(auth)}
-					>Sign out</button
-				>
-			{:else}
-				<button type="button" class="btn variant-filled-primary" on:click={signInWithGoogle}
-					>Sign in with Google</button
-				>
-			{/if}
+		{#if $user}
+			<h2 class="card-title">Welcome, {$user.displayName}</h2>
+			<p class="text-center text-success">You are logged in</p>
+			<button type="button" class="btn variant-filled-primary" on:click={() => signOutSSR()}
+				>Sign out</button
+			>
+		{:else}
+			<button type="button" class="btn variant-filled-primary" on:click={signInWithGoogle}
+				>Sign in with Google</button
+			>
+		{/if}
 	</Step>
 	<Step>
 		<svelte:fragment slot="header">Step 2</svelte:fragment>
-<UsernameSelect />
+		<UsernameSelect />
 	</Step>
 	<Step>
 		<svelte:fragment slot="header">Step 3</svelte:fragment>
-<ProfilePhotoSelect />
+		<ProfilePhotoSelect />
 	</Step>
 </Stepper>
