@@ -14,9 +14,9 @@
 	import ProfilePhotoSelect from '$lib/components/ProfilePhotoSelect.svelte';
 
 	const auth = getAuth();
-
+	$: console.log(`$user: `, $user);
 	async function signInWithGoogle() {
-		console.log(`🚀 ~ file: +page.svelte:19 ~ signInWithGoogle ~ signInWithGoogle:`)
+		console.log(`🚀 ~ file: +page.svelte:19 ~ signInWithGoogle ~ signInWithGoogle:`);
 		const provider = new GoogleAuthProvider();
 		const credential = await signInWithPopup(auth, provider);
 
@@ -45,6 +45,7 @@
 	}): void {
 		console.log('event:step', e);
 	}
+
 
 	const steps = [
 		{

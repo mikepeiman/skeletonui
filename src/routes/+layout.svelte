@@ -2,6 +2,12 @@
 	import '../app.postcss';
 	import { AppShell, AppBar, AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
+	import type { PageData } from './$types';
+	import { userData } from '$lib/firebase';
+	import { username } from '$lib/stores/userstore';
+
+	export let data: PageData;
+	console.log(`🚀 ~ file: +layout.svelte:8 ~ data:`, data);
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
@@ -32,6 +38,12 @@
 			value: 0,
 			href: '/login/photo',
 			title: 'Photo',
+			slot: 'lead'
+		},
+		{
+			value: 0,
+			href: `/${$username}`,
+			title: 'Account',
 			slot: 'lead'
 		}
 	];

@@ -1,8 +1,10 @@
 <script lang="ts">
 	import UserLink from "$lib/components/UserLink.svelte";
     import type { PageData } from "./$types";
-    
+
+    import imgjpg from "$lib/assets/user.jpg";
     export let data: PageData;
+    console.log(`🚀 ~ file: +page.svelte:6 ~ data:`, data)
   
 </script>
   
@@ -19,7 +21,7 @@
     </h1>
   
     <img
-      src={data.photoURL ?? "$lib/assets/user.png" ?? "$lib/assets/user.jpg"}
+      src={data.photoURL ?? imgjpg}
       alt="photoURL"
       width="256"
       class="mx-auto"
