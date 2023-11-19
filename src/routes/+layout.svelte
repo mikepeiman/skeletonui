@@ -97,11 +97,27 @@
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
 		<AppRail>
-			{#each railItems as item}
-				<AppRailAnchor href={item.href} selected={$page.url.pathname === item.href}
-					><svelte:fragment slot="lead">{item.title}</svelte:fragment></AppRailAnchor
-				>
-			{/each}
+			<AppRailAnchor href="/" selected={$page.url.pathname === '/'}
+				><svelte:fragment slot="lead">Home</svelte:fragment></AppRailAnchor
+			>
+
+			<AppRailAnchor href="/login" selected={$page.url.pathname === '/login'}
+				><svelte:fragment slot="lead">Login</svelte:fragment></AppRailAnchor
+			>
+
+			<AppRailAnchor href="/login/username" selected={$page.url.pathname === '/login/username'}
+				><svelte:fragment slot="lead">Username</svelte:fragment></AppRailAnchor
+			>
+
+			<AppRailAnchor href="/login/photo" selected={$page.url.pathname === '/login/photo'}
+				><svelte:fragment slot="lead">Photo</svelte:fragment></AppRailAnchor
+			>
+{#if username !== undefined}
+			<AppRailAnchor href={`/${username}`} selected={$page.url.pathname === `/${username}`}
+				><svelte:fragment slot="lead">{username}</svelte:fragment></AppRailAnchor
+			>
+			{/if}
+
 			<svelte:fragment slot="trail">
 				<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
 			</svelte:fragment></AppRail
