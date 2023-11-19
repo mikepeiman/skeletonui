@@ -4,17 +4,10 @@
 	import { page } from '$app/stores';
 	import type { PageData } from './$types';
 	import { userData } from '$lib/firebase';
-	import { username } from '$lib/stores/userstore';
-
-	export let data: PageData;
-	console.log(`🚀 ~ file: +layout.svelte:8 ~ data:`, data);
-	// Floating UI for Popups
-	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
-	import { storePopup } from '@skeletonlabs/skeleton';
-	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
-	let currentTile: number = 0;
-	let icon;
-
+	import { storedUsername } from '$lib/stores/userstore';
+	// import onmount and check storedusername
+	import { onMount } from 'svelte';
+	let username = $storedUsername;
 	let railItems = [
 		{
 			value: 0,
@@ -42,11 +35,27 @@
 		},
 		{
 			value: 0,
-			href: `/${$username}`,
-			title: 'Account',
+			href: `/${username}`,
+			title: `${username}`,
 			slot: 'lead'
 		}
 	];
+	storedUsername.subscribe((value) => {
+		console.log(`🚀 ~ file: +layout.svelte:43 ~ username.subscribe ~ value:`, value);
+		username = value;
+	});
+	onMount(() => {
+		console.log(`🚀 ~ file: +layout.svelte:45 ~ onMount ~ username:`, username);
+		console.log(`🚀 ~ file: +layout.svelte:8 ~ storedUsername:`, $storedUsername);
+	});
+	export let data: PageData;
+	console.log(`🚀 ~ file: +layout.svelte:8 ~ data:`, data);
+	// Floating UI for Popups
+	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
+	import { storePopup } from '@skeletonlabs/skeleton';
+	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+	let currentTile: number = 0;
+	let icon;
 </script>
 
 <!-- App Shell -->
@@ -93,7 +102,6 @@
 					><svelte:fragment slot="lead">{item.title}</svelte:fragment></AppRailAnchor
 				>
 			{/each}
-
 			<svelte:fragment slot="trail">
 				<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
 			</svelte:fragment></AppRail

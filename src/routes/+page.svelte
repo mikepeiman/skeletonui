@@ -1,13 +1,13 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-
+	import {storedUsername} from '$lib/stores/userstore';
 	export let data: PageData;
 	console.log(`🚀 ~ file: +page.svelte:5 ~ data:`, data);
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-10 text-center flex flex-col items-center">
-		<h2 class="h2">Welcome to Metabrain.</h2>
+		<h2 class="h2">Welcome to Metabrain, @{$storedUsername}.</h2>
 		<!-- Animated Logo -->
 		<figure>
 			<section class="img-bg" />

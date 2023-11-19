@@ -12,9 +12,9 @@
 	} from 'firebase/auth';
 	import UsernameSelect from '$lib/components/UsernameSelect.svelte';
 	import ProfilePhotoSelect from '$lib/components/ProfilePhotoSelect.svelte';
+	import { storedUsername } from '$lib/stores/userstore';
 
 	const auth = getAuth();
-	$: console.log(`$user: `, $user);
 	async function signInWithGoogle() {
 		console.log(`🚀 ~ file: +page.svelte:19 ~ signInWithGoogle ~ signInWithGoogle:`);
 		const provider = new GoogleAuthProvider();
@@ -82,7 +82,7 @@
 	<Step>
 		<svelte:fragment slot="header">Step 1</svelte:fragment>
 		{#if $user}
-			<h2 class="card-title">Welcome, {$user.displayName}</h2>
+			<h2 class="card-title">Welcome, {$user.displayName} ({$storedUsername})</h2>
 			<p class="text-center text-success">You are logged in</p>
 			<button type="button" class="btn variant-filled-primary" on:click={() => signOutSSR()}
 				>Sign out</button

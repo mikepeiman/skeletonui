@@ -57,7 +57,6 @@
 	}
 </script>
 
-<h1>Welcome {$username}</h1>
 <AuthCheck>
 	<form class="w-2/5" on:submit|preventDefault={confirmUsername}>
 		<input
