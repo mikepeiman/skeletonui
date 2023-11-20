@@ -21,9 +21,9 @@
             </h1>
             <img src={data.photoURL ?? imgjpg} alt="photoURL" width="256" class="mx-auto" />
             <p class="text-xl my-8">{data.bio ?? 'no bio yet...'}</p>
-            <ul class="list-none">
+            <ul class="list-none flex flex-col justify-center">
                 {#each data.links as item}
-                    <li>
+                    <li class="bg-slate-600 p-0 rounded-lg m-4">
                         <UserLink {...item} />
                     </li>
                 {/each}
