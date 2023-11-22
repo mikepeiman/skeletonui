@@ -2,7 +2,6 @@
     import type { PageData } from "./$types";
     import { page } from "$app/stores";
     import { enhance } from "$app/forms";
-  
     export let data: PageData;
   </script>
   

@@ -1,0 +1,1 @@
+import{d as r}from"./index.be47d3ca.js";import{u as e}from"./firebase.1ddb5b14.js";import{V as s}from"./scheduler.4e08fc29.js";console.log("🚀 ~ file: userstore.ts:5 ~ userData:",s(e));const d=r(e,o=>o==null?void 0:o.username);export{d as s};

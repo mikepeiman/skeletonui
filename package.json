@@ -12,6 +12,7 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
+    "@iconify/svelte": "^3.1.4",
     "@skeletonlabs/skeleton": "2.5.0",
     "@skeletonlabs/tw-plugin": "0.2.4",
     "@sveltejs/adapter-auto": "^2.0.0",
@@ -23,6 +24,7 @@
     "firebase": "^10.6.0",
     "flowbite": "^2.1.1",
     "flowbite-svelte": "^0.44.19",
+    "iconify": "^1.4.0",
     "iconify-icon": "^1.0.8",
     "postcss": "8.4.31",
     "prettier": "^2.8.0",
@@ -38,6 +40,7 @@
   "type": "module",
   "dependencies": {
     "@floating-ui/dom": "1.5.3",
-    "firebase-admin": "^11.11.0"
+    "firebase-admin": "^11.11.0",
+    "firebase-tools": "^12.9.1"
   }
 }

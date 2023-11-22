@@ -7,6 +7,8 @@
 	import { storedUsername } from '$lib/stores/userstore';
 	// import onmount and check storedusername
 	import { onMount } from 'svelte';
+	import Icon from '@iconify/svelte';
+
 	let username = $storedUsername;
 	let railItems = [
 		{
@@ -112,14 +114,16 @@
 			<AppRailAnchor href="/login/photo" selected={$page.url.pathname === '/login/photo'}
 				><svelte:fragment slot="lead">Photo</svelte:fragment></AppRailAnchor
 			>
-{#if username !== undefined}
-			<AppRailAnchor href={`/${username}`} selected={$page.url.pathname === `/${username}`}
-				><svelte:fragment slot="lead">{username}</svelte:fragment></AppRailAnchor
-			>
+			{#if username !== undefined}
+				<AppRailAnchor href={`/${username}`} selected={$page.url.pathname === `/${username}`}
+					><svelte:fragment slot="lead">{username}</svelte:fragment></AppRailAnchor
+				>
 			{/if}
 
 			<svelte:fragment slot="trail">
-				<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
+				<AppRailAnchor href="/" target="_blank" title="Account">
+					<Icon icon="fluent:brain-circuit-24-filled" class="icon w-full h-full" /></AppRailAnchor
+				>
 			</svelte:fragment></AppRail
 		>
 	</svelte:fragment>
